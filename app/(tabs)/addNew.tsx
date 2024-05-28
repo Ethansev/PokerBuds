@@ -1,15 +1,14 @@
 import { StyleSheet } from 'react-native';
+
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
-import { Link } from 'expo-router';
 
-export default function TabOneScreen() {
+export default function TabAddNewScreen() {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Tab One Test</Text>
+            <Text style={styles.title}>New Record?</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <Link href="/profile" style={{ color: 'blue' }}>Go to Profile</Link>
-            <EditScreenInfo path="app/(tabs)/index.tsx" />
+            <EditScreenInfo path="app/(tabs)/two.tsx" />
         </View>
     );
 }
