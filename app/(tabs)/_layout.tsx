@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
+import { Link, Tabs, useNavigation } from 'expo-router';
 import { Pressable } from 'react-native';
 
 import Colors from '@/constants/Colors';
@@ -17,6 +17,7 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
     const colorScheme = useColorScheme();
+    const navigation = useNavigation();
 
     return (
         <Tabs
@@ -55,14 +56,38 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
                 }}
             />
+            {/* <Tabs.Screen */}
+            {/*     name="index" */}
+            {/*     options={{ */}
+            {/*         title: 'Dashboard', */}
+            {/*         tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />, */}
+            {/*         headerRight: () => ( */}
+            {/*             <Link href="/modal" asChild> */}
+            {/*                 <Pressable> */}
+            {/*                     {({ pressed }) => ( */}
+            {/*                         <FontAwesome */}
+            {/*                             name="info-circle" */}
+            {/*                             size={25} */}
+            {/*                             color={Colors[colorScheme ?? 'light'].text} */}
+            {/*                             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} */}
+            {/*                         /> */}
+            {/*                     )} */}
+            {/*                 </Pressable> */}
+            {/*             </Link> */}
+            {/*         ), */}
+            {/*     }} */}
+            {/* /> */}
+
+            { /* TODO: how tf do I make this a modal instead of just a screen??? */}
             <Tabs.Screen
-                // name="addNew"
+                name="addNewSessionModal"
                 options={{
                     title: '',
-                    tabBarIcon: ({ color }) => (
-                        // TODO: change /modal to /addNew for the modal
-                        <Link href="/modal" asChild>
-                            <Pressable>
+                    tabBarButton: () => (
+                        <Link href="/addNewSessionModal" asChild>
+                            <Pressable
+                                style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
+                            >
                                 {({ pressed }) => (
                                     <FontAwesome
                                         name="plus-circle"
@@ -74,7 +99,6 @@ export default function TabLayout() {
                             </Pressable>
                         </Link>
                     )
-                    // <TabBarIcon name="plus-circle" color={color} />,
                 }}
             />
             <Tabs.Screen

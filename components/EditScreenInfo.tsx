@@ -6,6 +6,7 @@ import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
 import Colors from '@/constants/Colors';
+import Form from './Form';
 
 export default function EditScreenInfo({ path }: { path: string }) {
     return (
