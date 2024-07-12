@@ -12,42 +12,42 @@ export default function Form() {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.container}>
+        <SafeAreaView  className='p-4 flex-1 w-full bg-[#fff]'>
+            <View  className='p-4 flex-1 w-full bg-[#fff]'>
                 <Controller
                     control={control}
                     render={({ field }) => (
                         <TextInput
                             {...field}
-                            style={styles.input}
+                            className='h-12 w-full border-gray-200 border-2 px-4 py-2 rounded-xl mb-4'
                             placeholder="Your Name"
                         />
                     )}
                     name="name"
                     rules={{ required: 'You must enter your name' }}
                 />
-                {errors.name?.message && typeof errors.name.message === 'string' && <Text style={styles.errorText}>{errors.name.message}</Text>}
+                {errors.name?.message && typeof errors.name.message === 'string' && <Text  className='text-red-500 mb-4'>{errors.name.message}</Text>}
 
                 <Controller
                     control={control}
                     render={({ field }) => (
                         <TextInput
                             {...field}
-                            style={styles.input}
+                            className='h-12 w-full border-gray-200 border-2 px-4 py-2 rounded-xl'
                             placeholder="Email"
                         />
                     )}
                     name="email"
                     rules={{ required: 'You must enter your email', pattern: { value: /^\S+@\S+$/i, message: 'Enter a valid email address' } }}
                 />
-                {errors.email?.message && typeof errors.email.message === 'string' && <Text style={styles.errorText}>{errors.email.message}</Text>}
+                {errors.email?.message && typeof errors.email.message === 'string' && <Text className='text-red-500 mb-4'>{errors.email.message}</Text>}
 
-                <Button title="Submit" onPress={handleSubmit(onSubmit)} />
+                <Button title="Submit" onPress={handleSubmit(onSubmit)} className='mb-2' />
 
                 {submittedData && (
-                    <View>
-                        <Text style={styles.submittedTitle}>Submitted Data:</Text>
-                        <Text>Name: {submittedData.name}</Text>
+                    <View className='flex-1 items-center justify center'>
+                        <Text className='mb-2'>Submitted Data:</Text>
+                        <Text className='mb-2'>Name: {submittedData.name}</Text>
                         <Text>Email: {submittedData.email}</Text>
                     </View>
                 )}
@@ -56,30 +56,9 @@ export default function Form() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        padding: 16,
-        flex: 1,
-        width: '100%',
-        backgroundColor: '#fff'
-    },
-    input: {
-        height: 40,
-        width: '100%',
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 20,
-        padding: 8,
-        borderRadius: 4
-    },
-    errorText: {
-        color: 'red',
-        marginBottom: 10,
-    },
-    submittedContainer: {
-
-    },
-    submittedTitle: {
-
-    }
-});
+// const styles = StyleSheet.create({
+//     errorText: {
+//         color: 'red',
+//         marginBottom: 10,
+//     },
+// });

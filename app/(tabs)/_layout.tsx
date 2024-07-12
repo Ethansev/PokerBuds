@@ -1,11 +1,10 @@
-import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs, useNavigation } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Tabs, useNavigation } from 'expo-router';
+import React from 'react';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import { useColorScheme } from '@/components/useColorScheme';
+import Colors from '@/constants/Colors';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -29,33 +28,25 @@ export default function TabLayout() {
                 tabBarStyle: { alignItems: 'center', justifyContent: 'center' },
             }}>
             <Tabs.Screen
-                name="index"
-                options={{
-                    title: 'Dashboard',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-                    headerRight: () => (
-                        <Link href="/modal" asChild>
-                            <Pressable>
-                                {({ pressed }) => (
-                                    <FontAwesome
-                                        name="info-circle"
-                                        size={25}
-                                        color={Colors[colorScheme ?? 'light'].text}
-                                        style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                                    />
-                                )}
-                            </Pressable>
-                        </Link>
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="two"
+                name='reports'
                 options={{
                     title: 'Reports',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
                 }}
             />
+
+            {/* <Pressable> */}
+            {/*     <Text>Hide Modal</Text> */}
+            {/* </Pressable> */}
+
+            <Tabs.Screen
+                name='NewModal'
+                options={{
+                    title: 'add session',
+                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+                }}
+            />
+
             {/* <Tabs.Screen */}
             {/*     name="index" */}
             {/*     options={{ */}
@@ -78,41 +69,64 @@ export default function TabLayout() {
             {/*     }} */}
             {/* /> */}
 
-            { /* TODO: how tf do I make this a modal instead of just a screen??? */}
+            {/* <Tabs.Screen */}
+            {/*     name='addNewSessionModal' */}
+            {/*     options={{ */}
+            {/*         title: 'Session', */}
+            {/*         tabBarButton: () => ( */}
+            {/*             <Link href='/NewModal' asChild> */}
+            {/*                 <Pressable */}
+            {/*                     style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}> */}
+            {/*                     {({ pressed }) => ( */}
+            {/*                         <FontAwesome */}
+            {/*                             name='plus-circle' */}
+            {/*                             size={25} */}
+            {/*                             color={Colors[colorScheme ?? 'light'].text} */}
+            {/*                             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} */}
+            {/*                         /> */}
+            {/*                     )} */}
+            {/*                 </Pressable> */}
+            {/*             </Link> */}
+            {/*         ), */}
+            {/*     }} */}
+            {/* /> */}
+            {/* TODO: how tf do I make this a modal instead of just a screen??? */}
+            {/* <Tabs.Screen */}
+            {/*     name="addNewSessionModal" */}
+            {/*     options={{ */}
+            {/*         title: 'Session', */}
+            {/*         tabBarButton: () => ( */}
+            {/*             <Link href="/addNewSessionModal" asChild> */}
+            {/*                 <Pressable */}
+            {/*                     style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }} */}
+            {/*                 > */}
+            {/*                     {({ pressed }) => ( */}
+            {/*                         <FontAwesome */}
+            {/*                             name="plus-circle" */}
+            {/*                             size={25} */}
+            {/*                             color={Colors[colorScheme ?? 'light'].text} */}
+            {/*                             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} */}
+            {/*                         /> */}
+            {/*                     )} */}
+            {/*                 </Pressable> */}
+            {/*             </Link> */}
+            {/*         ) */}
+            {/*     }} */}
+            {/* /> */}
+
             <Tabs.Screen
-                name="addNewSessionModal"
+                name='logbook'
                 options={{
-                    title: '',
-                    tabBarButton: () => (
-                        <Link href="/addNewSessionModal" asChild>
-                            <Pressable
-                                style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}
-                            >
-                                {({ pressed }) => (
-                                    <FontAwesome
-                                        name="plus-circle"
-                                        size={25}
-                                        color={Colors[colorScheme ?? 'light'].text}
-                                        style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                                    />
-                                )}
-                            </Pressable>
-                        </Link>
-                    )
+                    title: 'Logbook',
+                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
                 }}
             />
+
             <Tabs.Screen
-                name="three"
-                options={{
-                    title: 'Who Knows',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-                }}
-            />
-            <Tabs.Screen
-                name="four"
+                name='four'
                 options={{
                     title: 'More',
-                    tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
                 }}
             />
         </Tabs>
