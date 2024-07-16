@@ -35,18 +35,6 @@ export default function TabLayout() {
                 }}
             />
 
-            {/* <Pressable> */}
-            {/*     <Text>Hide Modal</Text> */}
-            {/* </Pressable> */}
-
-            <Tabs.Screen
-                name='NewModal'
-                options={{
-                    title: 'add session',
-                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
-                }}
-            />
-
             {/* <Tabs.Screen */}
             {/*     name="index" */}
             {/*     options={{ */}
@@ -69,50 +57,22 @@ export default function TabLayout() {
             {/*     }} */}
             {/* /> */}
 
-            {/* <Tabs.Screen */}
-            {/*     name='addNewSessionModal' */}
-            {/*     options={{ */}
-            {/*         title: 'Session', */}
-            {/*         tabBarButton: () => ( */}
-            {/*             <Link href='/NewModal' asChild> */}
-            {/*                 <Pressable */}
-            {/*                     style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}> */}
-            {/*                     {({ pressed }) => ( */}
-            {/*                         <FontAwesome */}
-            {/*                             name='plus-circle' */}
-            {/*                             size={25} */}
-            {/*                             color={Colors[colorScheme ?? 'light'].text} */}
-            {/*                             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} */}
-            {/*                         /> */}
-            {/*                     )} */}
-            {/*                 </Pressable> */}
-            {/*             </Link> */}
-            {/*         ), */}
-            {/*     }} */}
-            {/* /> */}
-            {/* TODO: how tf do I make this a modal instead of just a screen??? */}
-            {/* <Tabs.Screen */}
-            {/*     name="addNewSessionModal" */}
-            {/*     options={{ */}
-            {/*         title: 'Session', */}
-            {/*         tabBarButton: () => ( */}
-            {/*             <Link href="/addNewSessionModal" asChild> */}
-            {/*                 <Pressable */}
-            {/*                     style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }} */}
-            {/*                 > */}
-            {/*                     {({ pressed }) => ( */}
-            {/*                         <FontAwesome */}
-            {/*                             name="plus-circle" */}
-            {/*                             size={25} */}
-            {/*                             color={Colors[colorScheme ?? 'light'].text} */}
-            {/*                             style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} */}
-            {/*                         /> */}
-            {/*                     )} */}
-            {/*                 </Pressable> */}
-            {/*             </Link> */}
-            {/*         ) */}
-            {/*     }} */}
-            {/* /> */}
+            <Tabs.Screen
+                name='SessionFormModal'
+                options={{
+                    title: 'New Session',
+                    tabBarIcon: ({ color }) => (
+                        <FontAwesome size={25} name='plus-circle' color={color} />
+                    ),
+                    unmountOnBlur: true,
+                }}
+                listeners={({ navigation }) => ({
+                    tabPress: (e) => {
+                        e.preventDefault();
+                        navigation.navigate('SessionFormModal');
+                    },
+                })}
+            />
 
             <Tabs.Screen
                 name='logbook'
