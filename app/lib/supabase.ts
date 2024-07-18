@@ -3,9 +3,10 @@ import { createClient } from '@supabase/supabase-js';
 import { AppState } from 'react-native';
 import 'react-native-url-polyfill/auto';
 
-// TODO: handle error where environment variables aren't passed
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseAnonKey = process.env.SUPABASE_ANON_KEY || '';
+// TODO: look into how expo does environment variables and secrets
+// https://docs.expo.dev/guides/environment-variables/
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     auth: {

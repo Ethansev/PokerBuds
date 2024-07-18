@@ -2,10 +2,13 @@ import Form from '@/components/Form';
 import { Link, router } from 'expo-router';
 import React, { useState } from 'react';
 import { View } from 'react-native';
+import { useAppDispatch, useAppSelector } from './lib/hooks';
 
 export default function SessionFormModal() {
     const [visible, useVisible] = useState<boolean>(true);
     const isPresented = router.canGoBack();
+    const count: number = useAppSelector((state) => state.counter.value);
+    const dispatch = useAppDispatch();
 
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

@@ -85,7 +85,7 @@ export default function TabLayout() {
                 listeners={({ navigation }) => ({
                     tabPress: (e) => {
                         e.preventDefault();
-                        navigation.navigate('modal');
+                        navigation.navigate('session-modal');
                     },
                 })}
             />

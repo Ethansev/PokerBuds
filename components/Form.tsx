@@ -16,6 +16,7 @@ export default function Form() {
         formState: { errors },
     } = useForm();
     const [submittedData, setSubmittedData] = useState<{ name?: string; email?: string }>({});
+
     // TODO: fix the type for this
     const onSubmit = (data: any) => {
         // Simulate form submission

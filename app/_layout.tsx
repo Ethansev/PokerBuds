@@ -2,13 +2,14 @@ import { useColorScheme } from '@/components/useColorScheme';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, useNavigation } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import 'react-native-reanimated';
+import { Provider } from 'react-redux';
 import '../global.css';
-// import { verifyInstallation } from 'nativewind';
+import { store } from './lib/store/store';
 
 export {
     // Catch any errors thrown by the Layout component.
@@ -45,11 +46,16 @@ export default function RootLayout() {
         return null;
     }
 
-    return <RootLayoutNav />;
+    return (
+        <Provider store={store}>
+            <RootLayoutNav />
+        </Provider>
+    );
 }
 
 function RootLayoutNav() {
     const colorScheme = useColorScheme();
+    const navigation = useNavigation();
 
     return (
         <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -61,15 +67,19 @@ function RootLayoutNav() {
                         headerLeft: () => <Pressable onPress={() => alert('hello test')} />,
                     }}
                 />
-                {/* <Stack.Screen */}
-                {/*     name='test' */}
-                {/*     options={{ */}
-                {/*         headerBackTitle: 'Custom Back', */}
-                {/*         headerBackTitleStyle: { fontSize: 26 }, */}
-                {/*     }} */}
-                {/* /> */}
-                {/* <Stack.Screen name="(tabs)/addNewSessionModal" options={{ presentation: 'modal' }} /> */}
-                <Stack.Screen name='modal' options={{ presentation: 'modal' }} />
+                <Stack.Screen
+                    name='session-modal'
+                    options={{
+                        presentation: 'modal',
+                        headerShown: true,
+                        headerTitle: 'Log a Session',
+                        headerRight: () => (
+                            <Pressable className='p-2' onPress={() => navigation.goBack()}>
+                                <Text className='text-blue-500'>cancel</Text>
+                            </Pressable>
+                        ),
+                    }}
+                />
             </Stack>
         </ThemeProvider>
     );
