@@ -1,6 +1,3 @@
-import { Stack, router } from 'expo-router';
-import { Button, Text, View } from 'react-native';
-
 export default function test() {
     return (
         <View className='mx-8'>

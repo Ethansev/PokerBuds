@@ -1,4 +1,6 @@
+import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+
 import { Tabs, useNavigation } from 'expo-router';
 import React from 'react';
 
@@ -12,6 +14,10 @@ function TabBarIcon(props: {
     color: string;
 }) {
     return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+}
+
+function EntypoIcon(props: { name: React.ComponentProps<typeof Entypo>['name']; color: string }) {
+    return <Entypo size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -28,10 +34,20 @@ export default function TabLayout() {
                 tabBarStyle: { alignItems: 'center', justifyContent: 'center' },
             }}>
             <Tabs.Screen
-                name='reports'
+                name='index'
                 options={{
-                    title: 'Reports',
-                    tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+                    title: 'Home',
+                    tabBarIcon: ({ color }) => <TabBarIcon name='home' color={color} />,
+                    tabBarShowLabel: false,
+                }}
+            />
+
+            <Tabs.Screen
+                name='stats'
+                options={{
+                    title: 'Stats',
+                    tabBarIcon: ({ color }) => <EntypoIcon name='bar-graph' color={color} />,
+                    tabBarShowLabel: false,
                 }}
             />
 
@@ -58,7 +74,7 @@ export default function TabLayout() {
             {/* /> */}
 
             <Tabs.Screen
-                name='SessionFormModal'
+                name='empty'
                 options={{
                     title: 'New Session',
                     tabBarIcon: ({ color }) => (
@@ -69,7 +85,7 @@ export default function TabLayout() {
                 listeners={({ navigation }) => ({
                     tabPress: (e) => {
                         e.preventDefault();
-                        navigation.navigate('SessionFormModal');
+                        navigation.navigate('modal');
                     },
                 })}
             />
